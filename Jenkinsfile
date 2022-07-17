@@ -6,7 +6,6 @@ node {
   }
 
   stage("Trigger unit tests") {
-    sh 'pip install covid'
     sh 'python3 Tracker.py' 
   }
   
