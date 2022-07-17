@@ -1,4 +1,4 @@
-iifrom covid import Covid
+from covid import Covid
 
 covid = Covid(source="worldometers")
 
