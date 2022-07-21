@@ -16,16 +16,13 @@ pipeline{
                 }
             }
         }
-        stage('Deploy Docker Image') {
-            steps {
-                script {
-                 withCredentials([string(credentialsId: 'Docker_Hub_Credentials', variable: 'dockerhubpwd')]) {
-                    sh 'docker login -u ddsperera -p ${dockerhubpwd}'
-                 }  
-                 sh 'docker push ddsperera/test-pipeline-1.0:latestt'
-                }
-            }
-        }
+        
+          stage('Push image') {
+            docker.withRegistry('https://registry.hub.docker.com', 'Docker_Hub_Credentials') {
+             app.push("latest")
+    }
+  }
+        
     
     stage('Deploy App on k8s') {
       steps {
