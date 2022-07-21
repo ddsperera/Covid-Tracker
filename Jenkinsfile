@@ -18,6 +18,13 @@ node {
     docker.withRegistry('https://registry.hub.docker.com', 'Docker_Hub_Credentials') {
       app.push("latest")
     }
+    
+    
+    stage("kubernetes deployment"){
+  sh 'kubectl apply -f k8s-deployment.yml'
+}
+    
+    
   }
 
   printMessage("Pipeline end")
