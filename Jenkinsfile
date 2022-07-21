@@ -49,12 +49,12 @@ pipeline{
                 }catch(error){
                     sh "ssh ubuntu@172.31.20.17 kubectl create -f ."
             }
-}
+	  }
         }
       
-    }
-    }
+      }
+     }
     }
 
 
-
+}
