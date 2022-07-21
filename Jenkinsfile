@@ -48,8 +48,7 @@ pipeline{
   printMessage("Pipeline end")
 }
 
-def printMessage(message) {
-  echo "${message}"
-}
 
 }
+
+
