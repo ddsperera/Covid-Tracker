@@ -35,7 +35,7 @@ pipeline{
 				sh 'docker push ddsperera/test-pipeline-1.0:latest'
 			}
 		}
-	}
+	
          
         
     
