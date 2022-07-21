@@ -5,6 +5,15 @@ node {
     checkout scm
   }
 
+      stage('login server'){
+         steps{
+            sshagent(credentials:['2d6c9874-b8ce-4263-91f9-3ec295712a6c']){
+               sh 'ssh  -o StrictHostKeyChecking=no  root@172.31.20.17 uptime "whoami"'
+          }
+        echo "success lgoin"
+         }
+       }
+   
   
   stage('Build image') {
     app = docker.build("ddsperera/test-pipeline")
@@ -19,16 +28,7 @@ node {
       app.push("latest")
     }
     
-    stages{
-      stage('login server'){
-         steps{
-            sshagent(credentials:['2d6c9874-b8ce-4263-91f9-3ec295712a6c']){
-               sh 'ssh  -o StrictHostKeyChecking=no  root@172.31.20.17 uptime "whoami"'
-          }
-        echo "success lgoin"
-         }
-       }
-   }
+
     
     stage("kubernetes deployment"){
   sh 'kubectl apply -f k8s-deployment.yml'
