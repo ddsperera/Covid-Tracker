@@ -1,23 +1,32 @@
-node {
-  printMessage("Pipeline start")
-
-  stage('Clone repository') {
-    checkout scm
-  }
+pipeline{
+    agent any
+    stages {
+      stage('Clone repository') {
+        steps{
+        checkout scm
+       }
+      }
 
   
   stage('Build image') {
+    steps{
     app = docker.build("ddsperera/test-pipeline")
+    }
   }
+    
   
     stage("Trigger unit tests") {
+      steps{
     sh 'python3 Tracker.py' 
-  }
+     }
+    }
   
   stage('Push image') {
+    steps{
     docker.withRegistry('https://registry.hub.docker.com', 'Docker_Hub_Credentials') {
       app.push("latest")
     }
+   }
   }
   
      stage('Deploy App on k8s') {
