@@ -1,19 +1,8 @@
-pipeline {
- agent any
- stages {
+node {
    
     stage('Clone repository') {
     checkout scm
   }
-
-      stage('login server'){
-         steps{
-            sshagent(credentials:['2d6c9874-b8ce-4263-91f9-3ec295712a6c']){
-               sh 'ssh  -o StrictHostKeyChecking=no  root@172.31.20.17 uptime "whoami"'
-          }
-        echo "success lgoin"
-         }
-       }
    
   
   stage('Build image') {
@@ -30,19 +19,12 @@ pipeline {
     }
     
 
-    
-    stage("kubernetes deployment"){
-  sh 'kubectl apply -f k8s-deployment.yml'
-}
-    
-    
-  }
-
   printMessage("Pipeline end")
 }
 
 def printMessage(message) {
   echo "${message}"
 }
+
 }
 
