@@ -1,9 +1,10 @@
 node {
-   
-    stage('Clone repository') {
+  printMessage("Pipeline start")
+
+  stage('Clone repository') {
     checkout scm
   }
-   
+
   
   stage('Build image') {
     app = docker.build("ddsperera/test-pipeline")
@@ -17,14 +18,12 @@ node {
     docker.withRegistry('https://registry.hub.docker.com', 'Docker_Hub_Credentials') {
       app.push("latest")
     }
-    
+  }
 
   printMessage("Pipeline end")
 }
 
 def printMessage(message) {
   echo "${message}"
-}
-
 }
 
