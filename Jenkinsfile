@@ -18,10 +18,12 @@ pipeline{
         }
         
           stage('Push image') {
+              steps {
             docker.withRegistry('https://registry.hub.docker.com', 'Docker_Hub_Credentials') {
              app.push("latest")
-    }
-  }
+                 }
+             }
+          }
         
     
     stage('Deploy App on k8s') {
