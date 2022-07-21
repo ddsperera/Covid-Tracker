@@ -40,7 +40,7 @@ pipeline{
 	    stage('login server'){
          steps{
             sshagent(credentials:['2d6c9874-b8ce-4263-91f9-3ec295712a6c']){
-               sh 'ssh  -o StrictHostKeyChecking=no  ubuntu@172.31.20.17 uptime "whoami"'
+               sh 'ssh  -o StrictHostKeyChecking=no  root@172.31.20.17 uptime "whoami"'
           }
         echo "success login"
          }
