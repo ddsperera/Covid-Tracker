@@ -1,5 +1,10 @@
 pipeline{
     agent any
+    
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('Docker_Hub_Credentials')
+	}
+    
     stages {
         stage('Clone Repository') {
             steps{
@@ -17,16 +22,20 @@ pipeline{
             }
         }
         
-        stage('Push Docker Image') {
-            steps {
-                script {
-                 withCredentials([string(credentialsId: 'DockerHub_Credentials', variable: 'dockerhubpwd')]) {
-                    sh 'docker login -u ddsperera -p ${dockerhubpwd}'
-                 }  
-                 sh 'docker push ddsperera/test-pipeline-1.0:latestt'
-                }
-            }
-        }
+        		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push ddsperera/test-pipeline-1.0:latest'
+			}
+		}
+	}
          
         
     
