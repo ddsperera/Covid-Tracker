@@ -1,18 +1,8 @@
 pipeline {
  agent any
  stages {
-   stage('login server'){
-         steps{
-            sshagent(credentials:['Login_Cloud_Server']){
-               sh 'ssh  -o StrictHostKeyChecking=no  root@135.181.203.3 uptime "whoami"'
-          }
-        echo "success lgoin"
-         }
-       }
    
-
-
-  stage('Clone repository') {
+    stage('Clone repository') {
     checkout scm
   }
 
