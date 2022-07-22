@@ -15,7 +15,7 @@ node {
           docker run --rm test-pipeline
         """
       }
-    }
+    
   
   stage('Push image') {
     docker.withRegistry('https://registry.hub.docker.com', 'Docker_Hub_Credentials') {
