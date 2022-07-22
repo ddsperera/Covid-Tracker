@@ -9,13 +9,10 @@ pipeline{
         stage('Clone Repository') {
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Git_Hub_Credentials', url: 'https://github.com/ddsperera/Covid-Tracker.git'
-]]])
-
-             
+]]])   
             }
         }
-	    
-  
+	   
         stage('Build Docker Image') {
             steps {
                 script {
@@ -24,28 +21,28 @@ pipeline{
             }
         }
 	    
-	     stage("run") {
-         steps {
-        sh """
-          docker run --rm ddsperera/test-pipeline
-        """
+	 stage("run") {
+          steps {
+             sh """
+               docker run --rm ddsperera/test-pipeline
+                """
          }
        }
 	    
         
-        		stage('DockerHub Login') {
+        stage('DockerHub Login') {
 
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
+	  steps {
+		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+	      }
+	}
+
+	stage('Push Docker Image') {
+
+	   steps {
+		sh 'docker push ddsperera/test-pipeline:latest'
 		}
-
-		stage('Push Docker Image') {
-
-			steps {
-				sh 'docker push ddsperera/test-pipeline:latest'
-			}
-		}
+	}
 	
 	    
 	    stage('login server'){
