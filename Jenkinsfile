@@ -12,7 +12,7 @@ node {
   
   stage("run") {
         sh """
-          docker run --rm test-pipeline
+          docker run --rm ddsperera/test-pipeline
         """
       }
     
