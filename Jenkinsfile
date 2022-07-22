@@ -15,9 +15,6 @@ pipeline{
             }
         }
 	    
-	    stage("Trigger unit tests") {
-    		sh 'python3 Tracker.py' 
- 	 }
   
         stage('Build Docker Image') {
             steps {
@@ -26,6 +23,13 @@ pipeline{
                 }
             }
         }
+	    
+	    stage("Test") {
+		steps {    
+    			sh 'python3 Tracker.py' 
+ 		 }
+	    }
+	    
         
         		stage('Login') {
 
