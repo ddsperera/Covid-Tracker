@@ -1,6 +1,6 @@
 FROM python:3
 
-RUN pip install covid
+RUN pip3 install covid
 
 ADD Tracker.py /
 
