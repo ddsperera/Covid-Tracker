@@ -1,12 +1,9 @@
-FROM python:3.6.7
+FROM python:3
 
-RUN pip3 install covid
+RUN pip install covid
 
 ADD Tracker.py /
 
-EXPOSE 5000
-
 CMD [ "python", "./Tracker.py" ]
-
 
 
