@@ -12,6 +12,6 @@ print("World Update")
 
 print(f"Total Confirmed Cases: {confirmed}")
 print(f"Total Active Cases: {active}")
-#print(f"Total Recovered: {recovered}")
-#print(f"Total Death: {death}")
+print(f"Total Recovered: {recovered}")
+print(f"Total Death: {death}")
 print("Stay Safe")
