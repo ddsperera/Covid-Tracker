@@ -18,7 +18,7 @@ node {
     
   
   stage('Push image') {
-    docker.withRegistry('https://registry.hub.docker.com', 'Docker_Hub_Credentials') {
+    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub_Credentials') {
       app.push("latest")
     }
   }
