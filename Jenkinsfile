@@ -2,7 +2,7 @@ pipeline{
     agent any
     
     environment {
-		DOCKERHUB_CREDENTIALS=credentials('DockerHub_Credentials')
+		DOCKERHUB_CREDENTIALS=credentials('Docker_Hub_Credentials')
 	}
     
     stages {
@@ -25,7 +25,7 @@ pipeline{
         		stage('Login') {
 
 			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PASSWORD | docker login -u $DOCKERHUB_CREDENTIALS_USERNAME --password-stdin'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
