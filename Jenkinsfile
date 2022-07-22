@@ -11,7 +11,6 @@ node {
   }
   
   stage("run") {
-      steps {
         sh """
           docker run --rm test-pipeline
         """
