@@ -1,8 +1,6 @@
 FROM python:3
 
-RUN apt install python3-pip
-
-RUN pip install covid
+RUN pip3 install covid
 
 ADD Tracker.py /
 
