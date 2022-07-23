@@ -58,7 +58,7 @@ pipeline{
     
     stage('Deploy App on k8s') {
       steps {
-            sshagent(['2d6c9874-b8ce-4263-91f9-3ec295712a6c']) {
+            sshagent(['DockerHub_Credentials']) {
             sh "scp -o StrictHostKeyChecking=no Deployment.yaml ubuntu@172.31.20.17:/home/ubuntu"
             script {
                 try{
