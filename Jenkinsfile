@@ -24,7 +24,7 @@ pipeline{
 	 stage("Test") {
           steps {
              sh """
-               docker run ddsperera/test-pipeline
+               docker run --read-only ddsperera/test-pipeline
                 """
          }
        }
